@@ -1,14 +1,30 @@
 import * as React from 'react';
-import { Container } from '@chakra-ui/react';
-import "./puzzle.js"
+import { Container, Button, Center } from '@chakra-ui/react';
+import './puzzle.js';
+// @ts-ignore
+const js = window.js;
 export default function App() {
 	return (
 		<Container h="100vh" d="flex" alignItems="center" justifyContent="center">
-			<div className="canvaswrapper" id="canvasparent">
-    <canvas id="canvas" className="canvas"></canvas>
-  </div>
+			<div
+				className="canvaswrapper"
+				style={{ width: '100%', height: '100%' }}
+				id="canvasparent"
+			>
+				<canvas
+					id="canvas"
+					style={{ border: '1px solid' }}
+					className="canvas"
+				></canvas>
+				<Center pt={3}>
+					<Button onClick={js.general.initPuzzle} bg="lightblue ">
+						{' '}
+						Reset{' '}
+					</Button>
+				</Center>
+			</div>
 
-  <div className="optionstrigger" id="showoptions"><img src="static/img/cog.svg"/></div>
+			{/* <div className="optionstrigger" id="showoptions"><img src="static/img/cog.svg"/></div>
 
   <div id="options" className="optionswrapper">
     <div className="mask" id="hideoptions"></div>
@@ -43,10 +59,9 @@ export default function App() {
 
       <div className="aboutlink">
         <a href="https://www.custarddoughnuts.co.uk/article/2017/3/9/javascript-jigsaw-puzzle">About</a>
-      </div>
-    </div>
-  </div>
-
+      </div> */}
+			{/* </div> */}
+			{/* </div> */}
 		</Container>
 	);
 }

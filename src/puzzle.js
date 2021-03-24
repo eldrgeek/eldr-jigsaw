@@ -8,7 +8,7 @@ let imageloadtotal = 0;
 let allimages = [
 	{
 		name: 'pictures',
-		images: ['city.jpg'],
+		images: ['justcauses.png'],
 		dir: ''
 	}
 ];
@@ -106,8 +106,8 @@ function NewPiece(x, y, w, h, solvedx, solvedy, spritex, spritey, rowx, rowy) {
 				js.savedcanvash = js.canvash;
 				js.piececountx = 6;
 				js.piececounty = 3;
-				document.getElementById('piecesx').value = js.piececountx;
-				document.getElementById('piecesy').value = js.piececounty;
+				// document.getElementById('piecesx').value = js.piececountx;
+				// document.getElementById('piecesy').value = js.piececounty;
 				js.general.createPieces();
 			},
 
@@ -116,7 +116,7 @@ function NewPiece(x, y, w, h, solvedx, solvedy, spritex, spritey, rowx, rowy) {
 				let parentel = document.getElementById('canvasparent');
 				let targetw = parentel.offsetWidth;
 				let targeth = parentel.offsetHeight;
-
+				console.log({ targetw, targeth });
 				let sizes = js.general.calculateAspectRatio(
 					js.idealw,
 					js.idealh,
@@ -158,6 +158,7 @@ function NewPiece(x, y, w, h, solvedx, solvedy, spritex, spritey, rowx, rowy) {
 			},
 
 			resizeCanvas: function () {
+				console.log('resize canvas');
 				js.general.initCanvasSize();
 				let diffx = (js.canvasw / js.savedcanvasw) * 100;
 				let diffy = (js.canvash / js.savedcanvash) * 100;
@@ -226,43 +227,43 @@ function NewPiece(x, y, w, h, solvedx, solvedy, spritex, spritey, rowx, rowy) {
 					false
 				);
 
-				let onupdate =
-					document.ontouchstart !== null ? 'mousedown' : 'touchstart';
-				document.getElementById('updatePuzzle').addEventListener(
-					onupdate,
-					function (e) {
-						js.general.updateSettings();
-					},
-					false
-				);
+				// let onupdate =
+				// 	document.ontouchstart !== null ? 'mousedown' : 'touchstart';
+				// // document.getElementById('updatePuzzle').addEventListener(
+				// // 	onupdate,
+				// 	function (e) {
+				// 		js.general.updateSettings();
+				// 	},
+				// 	false
+				// );
 
-				let showoptions =
-					document.ontouchstart !== null ? 'mousedown' : 'touchstart';
-				document.getElementById('showoptions').addEventListener(
-					showoptions,
-					function (e) {
-						document.getElementById('options').className =
-							'optionswrapper shown';
-					},
-					false
-				);
-				let hideoptions =
-					document.ontouchstart !== null ? 'mousedown' : 'touchstart';
-				document.getElementById('hideoptions').addEventListener(
-					hideoptions,
-					function (e) {
-						document.getElementById('options').className = 'optionswrapper';
-					},
-					false
-				);
-				let reset = document.ontouchstart !== null ? 'mousedown' : 'touchstart';
-				document.getElementById('resetPuzzle').addEventListener(
-					reset,
-					function (e) {
-						js.general.resetPuzzle();
-					},
-					false
-				);
+				// let showoptions =
+				// 	document.ontouchstart !== null ? 'mousedown' : 'touchstart';
+				// document.getElementById('showoptions').addEventListener(
+				// // 	showoptions,
+				// 	function (e) {
+				// 		document.getElementById('options').className =
+				// 			'optionswrapper shown';
+				// 	},
+				// 	false
+				// );
+				// let hideoptions =
+				// 	document.ontouchstart !== null ? 'mousedown' : 'touchstart';
+				// document.getElementById('hideoptions').addEventListener(
+				// 	hideoptions,
+				// 	function (e) {
+				// 		document.getElementById('options').className = 'optionswrapper';
+				// 	},
+				// 	false
+				// );
+				// let reset = document.ontouchstart !== null ? 'mousedown' : 'touchstart';
+				// document.getElementById('resetPuzzle').addEventListener(
+				// 	reset,
+				// 	function (e) {
+				// 		js.general.resetPuzzle();
+				// 	},
+				// 	false
+				// );
 			},
 
 			//find where on the canvas the mouse/touch is
@@ -310,9 +311,9 @@ function NewPiece(x, y, w, h, solvedx, solvedy, spritex, spritey, rowx, rowy) {
 
 					js.clickedpiece = -1;
 
-					if (js.pieces.length === 0) {
-						document.getElementById('body').className = 'solved';
-					}
+					// if (js.pieces.length === 0) {
+					// 	document.getElementById('body').className = 'solved';
+					// }
 				}
 			},
 
@@ -437,10 +438,10 @@ function NewPiece(x, y, w, h, solvedx, solvedy, spritex, spritey, rowx, rowy) {
 				let h = js.canvash / js.piececounty;
 
 				//try to distribute the pieces within the middle of the puzzle, so we can work on the edges first
-				let rangeminx = (js.canvasw / 100) * 10;
-				let rangemaxx = ((js.canvasw - w) / 100) * 90;
-				let rangeminy = (js.canvash / 100) * 10;
-				let rangemaxy = ((js.canvash - h) / 100) * 90;
+				let rangeminx = 0; //(js.canvasw / 100) * 10;
+				let rangemaxx = js.canvasw - w; // / 100) * 90;
+				let rangeminy = 0; //(js.canvash / 100) * 10;
+				let rangemaxy = js.canvash - h; /// 100) * 90;
 
 				for (let y = 0; y < js.piececounty; y++) {
 					for (let x = 0; x < js.piececountx; x++) {
@@ -554,7 +555,7 @@ function NewPiece(x, y, w, h, solvedx, solvedy, spritex, spritey, rowx, rowy) {
 					js.ctx.lineWidth = 0;
 					js.ctx.strokeStyle = 'rgba(0,0,0,0)';
 				} else {
-					js.ctx.lineWidth = 2;
+					js.ctx.lineWidth = 6;
 					js.ctx.strokeStyle = 'rgba(0,0,0,0.5)';
 				}
 
